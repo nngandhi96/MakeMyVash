@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MakeMyVash - Civil & IT Services</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; }
+        nav { background: white; padding: 20px 0; box-shadow: 0 2px 10px rgba(0,0,0,0.1); position: fixed; width: 100%; top: 0; z-index: 1000; }
+        .nav-container { max-width: 1200px; margin: 0 auto; padding: 0 20px; display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 1.5rem; font-weight: 700; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .nav-links { display: flex; list-style: none; gap: 30px; }
+        .nav-links a { color: #333; text-decoration: none; font-weight: 500; transition: color 0.3s ease; }
+        .nav-links a:hover { color: #667eea; }
+        .mobile-menu { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+        .mobile-menu span { width: 25px; height: 3px; background: #333; transition: 0.3s; }
+        .nav-links.mobile-active { display: flex; position: absolute; top: 100%; left: 0; right: 0; background: white; flex-direction: column; padding: 20px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); gap: 15px; }
+        .mobile-menu.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+        .mobile-menu.active span:nth-child(2) { opacity: 0; }
+        .mobile-menu.active span:nth-child(3) { transform: rotate(-45deg) translate(7px, -6px); }
+        .hero { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 180px 20px 100px; text-align: center; margin-top: 70px; }
+        .hero h1 { font-size: 3.5rem; margin-bottom: 20px; font-weight: 700; animation: fadeInUp 1s ease; }
+        .hero p { font-size: 1.4rem; max-width: 800px; margin: 0 auto 40px; opacity: 0.95; animation: fadeInUp 1s ease 0.2s backwards; }
+        .hero-buttons { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; animation: fadeInUp 1s ease 0.4s backwards; }
+        .btn-primary, .btn-secondary { padding: 15px 40px; border-radius: 50px; font-size: 1.1rem; font-weight: 600; text-decoration: none; transition: transform 0.3s ease, box-shadow 0.3s ease; display: inline-block; }
+        .btn-primary { background: white; color: #667eea; }
+        .btn-secondary { background: transparent; color: white; border: 2px solid white; }
+        .btn-primary:hover, .btn-secondary:hover { transform: scale(1.05); box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
+        .about { padding: 100px 20px; background: #f8f9fa; }
+        .about-container { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+        .about-content h2 { font-size: 2.5rem; color: #2c3e50; margin-bottom: 20px; }
+        .about-content p { color: #7f8c8d; font-size: 1.1rem; margin-bottom: 15px; }
+        .about-stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px; margin-top: 30px; }
+        .stat-box { text-align: center; padding: 20px; background: white; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        .stat-box h3 { font-size: 2.5rem; color: #667eea; margin-bottom: 10px; }
+        .stat-box p { color: #7f8c8d; font-size: 0.9rem; }
+        .services { padding: 100px 20px; max-width: 1200px; margin: 0 auto; }
+        .section-title { text-align: center; margin-bottom: 60px; }
+        .section-title h2 { font-size: 2.5rem; color: #2c3e50; margin-bottom: 15px; }
+        .section-title p { font-size: 1.1rem; color: #7f8c8d; }
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; }
+        .service-card { background: white; padding: 40px 30px; border-radius: 10px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .service-card:hover { transform: translateY(-10px); box-shadow: 0 15px 40px rgba(0,0,0,0.15); }
+        .service-icon { width: 70px; height: 70px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 25px; font-size: 2rem; }
+        .service-card h3 { font-size: 1.5rem; color: #2c3e50; margin-bottom: 15px; }
+        .service-card p { color: #7f8c8d; line-height: 1.8; }
+        .contact { padding: 100px 20px; background: #f8f9fa; }
+        .contact-container { max-width: 1000px; margin: 0 auto; }
+        .contact-content { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; margin-top: 60px; }
+        .contact-info h3 { color: #2c3e50; margin-bottom: 30px; font-size: 1.8rem; }
+        .info-item { display: flex; align-items: flex-start; gap: 15px; margin-bottom: 25px; }
+        .info-icon { width: 40px; height: 40px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; flex-shrink: 0; }
+        .info-text h4 { color: #2c3e50; margin-bottom: 5px; }
+        .info-text p { color: #7f8c8d; }
+        .contact-form h3 { color: #2c3e50; margin-bottom: 30px; font-size: 1.8rem; }
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; color: #2c3e50; margin-bottom: 8px; font-weight: 500; }
+        .form-group input, .form-group textarea { width: 100%; padding: 12px 15px; border: 2px solid #e0e0e0; border-radius: 5px; font-family: inherit; font-size: 1rem; transition: border-color 0.3s ease; }
+        .form-group input:focus, .form-group textarea:focus { outline: none; border-color: #667eea; }
+        .form-group textarea { resize: vertical; min-height: 120px; }
+        .submit-btn { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 15px 40px; border: none; border-radius: 50px; font-size: 1.1rem; font-weight: 600; cursor: pointer; transition: transform 0.3s ease, box-shadow 0.3s ease; width: 100%; }
+        .submit-btn:hover { transform: scale(1.05); box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4); }
+        .submit-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+        .form-message { padding: 15px; border-radius: 5px; margin-bottom: 20px; display: none; }
+        .form-message.success { background: #d4edda; color: #155724; border: 1px solid #c3e6cb; display: block; }
+        .form-message.error { background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; display: block; }
+        footer { background: #2c3e50; color: white; padding: 60px 20px 30px; }
+        .footer-container { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; margin-bottom: 40px; }
+        .footer-section h3 { margin-bottom: 20px; font-size: 1.3rem; }
+        .footer-section p, .footer-section a { color: rgba(255,255,255,0.8); text-decoration: none; display: block; margin-bottom: 10px; transition: color 0.3s ease; }
+        .footer-section a:hover { color: white; }
+        .social-links a { display: flex; margin-bottom: 0; }
+        .social-links { display: flex; flex-direction: row; gap: 12px; margin-top: 20px; }
+        .social-icon { width: 40px; height: 40px; background: rgba(255,255,255,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; transition: background 0.3s ease; padding: 0; flex-shrink: 0; }
+        .social-icon:hover { background: #667eea; }
+        .social-icon svg { width: 18px; height: 18px; fill: white; display: block; pointer-events: none; }
+        .footer-bottom { text-align: center; padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.1); color: rgba(255,255,255,0.6); }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        @media (max-width: 968px) { .about-container, .contact-content { grid-template-columns: 1fr; gap: 40px; } }
+        @media (max-width: 768px) { .nav-links { display: none; } .mobile-menu { display: flex; } .hero { padding: 140px 20px 80px; } .hero h1 { font-size: 2.2rem; } .hero p { font-size: 1.1rem; } .section-title h2 { font-size: 2rem; } .about-container, .contact-content { grid-template-columns: 1fr; } .services-grid { grid-template-columns: 1fr; } .about-stats { grid-template-columns: repeat(2, 1fr); gap: 20px; } .hero-buttons { flex-direction: column; align-items: stretch; } .btn-primary, .btn-secondary { width: 100%; text-align: center; } .footer-container { grid-template-columns: 1fr; gap: 30px; } .services, .contact { padding: 60px 20px; } .about { padding: 60px 20px; } }
+        @media (max-width: 480px) { .hero h1 { font-size: 1.8rem; } .hero p { font-size: 1rem; } .section-title h2 { font-size: 1.7rem; } .about-stats { grid-template-columns: 1fr; } .stat-box h3 { font-size: 2rem; } .service-card h3 { font-size: 1.3rem; } .btn-primary, .btn-secondary { padding: 12px 30px; font-size: 1rem; } .contact-info h3, .contact-form h3 { font-size: 1.5rem; } }
+        .whatsapp-float { position: fixed; bottom: 20px; right: 20px; z-index: 999; }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <div class="logo">MakeMyVash</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="mobile-menu"><span></span><span></span><span></span></div>
+        </div>
+    </nav>
+
+    <section id="home" class="hero">
+        <h1>Building Tomorrow's Infrastructure Today</h1>
+        <p>Expert civil engineering and IT consultancy services for businesses ready to innovate and grow</p>
+        <div class="hero-buttons">
+            <a href="#services" class="btn-primary">Explore Services</a>
+            <a href="#contact" class="btn-secondary">Get Started</a>
+        </div>
+    </section>
+
+    <section id="about" class="about">
+        <div class="about-container">
+            <div class="about-content">
+                <h2>Who We Are</h2>
+                <p>MMV is a dynamic startup at the intersection of innovation and infrastructure, delivering excellence in both the civil engineering and IT sectors. Our mission is to build smarter, safer communities and help organizations achieve digital transformation through intelligent solutions.</p>
+                <p>From residential and commercial design, planning, and surveying to highway and road construction, MMV brings precision and expertise to every engineering project. We combine traditional engineering know-how with the latest advancements in automation, artificial intelligence, and IT consulting.</p>
+                <p>MMV — Building the Future, Intelligently.</p>
+            </div>
+            <div class="about-stats">
+                <div class="stat-box"><h3>10+</h3><p>Projects Completed</p></div>
+                <div class="stat-box"><h3>10+</h3><p>Happy Clients</p></div>
+                <div class="stat-box"><h3>5+</h3><p>Years Experience</p></div>
+                <div class="stat-box"><h3>15+</h3><p>Team Members</p></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="services">
+        <div class="section-title">
+            <h2>Our Services</h2>
+            <p>Comprehensive solutions for modern engineering and technology challenges</p>
+        </div>
+        <div class="services-grid">
+            <div class="service-card"><div class="service-icon">🏗️</div><h3>Civil Engineering</h3><p>Structural design, project management, and construction supervision for residential, commercial, and infrastructure projects with focus on sustainability.</p></div>
+            <div class="service-card"><div class="service-icon">💻</div><h3>IT Solutions</h3><p>Custom software development, cloud infrastructure, and digital transformation services to modernize your business operations.</p></div>
+            <div class="service-card"><div class="service-icon">📊</div><h3>Project Planning</h3><p>Strategic planning and feasibility studies combining civil and digital perspectives for successful project delivery.</p></div>
+            <div class="service-card"><div class="service-icon">🔧</div><h3>Technical Support</h3><p>Ongoing maintenance and support for both physical infrastructure and IT systems ensuring operational continuity.</p></div>
+            <div class="service-card"><div class="service-icon">🌐</div><h3>Smart Infrastructure</h3><p>Integration of IoT and smart technology into civil projects, creating intelligent buildings and infrastructure.</p></div>
+            <div class="service-card"><div class="service-icon">📈</div><h3>Consulting & Advisory</h3><p>Expert consultation on complex engineering and technology challenges with strategic guidance for informed decisions.</p></div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <div class="contact-container">
+            <div class="section-title">
+                <h2>Get In Touch</h2>
+                <p>Let's discuss how we can help bring your vision to life</p>
+            </div>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>Contact Information</h3>
+                    <div class="info-item">
+                        <div class="info-icon">📍</div>
+                        <div class="info-text"><h4>Address</h4><p>Madhubani<br>Pin Code - 847108<br>State - Bihar</p></div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">📞</div>
+                        <div class="info-text"><h4>Phone</h4><p>+917352469887</p></div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">📧</div>
+                        <div class="info-text"><h4>Email</h4><p>info@mmvash.com</p></div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">⏰</div>
+                        <div class="info-text"><h4>Business Hours</h4><p>Monday - Friday: 9:00 AM - 6:00 PM<br>Saturday: 10:00 AM - 4:00 PM</p></div>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <h3>Send Us a Message</h3>
+                    <div id="formMessage" class="form-message"></div>
+                    <form id="contactForm">
+                        <div class="form-group"><label>Name *</label><input type="text" name="name" id="name" placeholder="Your name" required></div>
+                        <div class="form-group"><label>Email *</label><input type="email" name="email" id="email" placeholder="your.email@example.com" required></div>
+                        <div class="form-group"><label>Phone</label><input type="tel" name="phone" id="phone" placeholder="+1 (555) 123-4567"></div>
+                        <div class="form-group"><label>Subject *</label><input type="text" name="subject" id="subject" placeholder="What can we help you with?" required></div>
+                        <div class="form-group"><label>Message *</label><textarea name="message" id="message" placeholder="Tell us about your project..." required></textarea></div>
+                        <button type="submit" class="submit-btn" id="submitBtn">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>MakeMyVash</h3>
+                <p>Leading provider of civil engineering and IT consultancy services, delivering innovative solutions for modern infrastructure challenges.</p>
+                <div class="social-links">
+                    <a href="#" class="social-icon" aria-label="Facebook">
+                        <svg viewBox="0 0 24 24" width="18" height="18" fill="white" xmlns="http://www.w3.org/2000/svg"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                    </a>
+                    <a href="https://www.linkedin.com/company/make-my-vash/about/?viewAsMember=true" class="social-icon" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
+                        <svg viewBox="0 0 24 24" width="18" height="18" fill="white" xmlns="http://www.w3.org/2000/svg"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                    </a>
+                    <a href="#" class="social-icon" aria-label="Twitter / X">
+                        <svg viewBox="0 0 24 24" width="18" height="18" fill="white" xmlns="http://www.w3.org/2000/svg"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                    </a>
+                    <a href="#" class="social-icon" aria-label="Instagram">
+                        <svg viewBox="0 0 24 24" width="18" height="18" fill="white" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+                    </a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <a href="#about">About Us</a>
+                <a href="#services">Services</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <div class="footer-section">
+                <h3>Services</h3>
+                <a href="#">Civil Engineering</a>
+                <a href="#">IT Solutions</a>
+                <a href="#">Project Planning</a>
+                <a href="#">Technical Support</a>
+                <a href="#">Smart Infrastructure</a>
+            </div>
+            <div class="footer-section">
+                <h3>Newsletter</h3>
+                <p>Subscribe to our newsletter for updates on latest projects and industry insights.</p>
+                <div class="form-group">
+                    <input type="email" placeholder="Your email address" style="margin-bottom: 10px;">
+                    <button class="submit-btn" style="width: 100%;" onclick="handleNewsletter(event)">Subscribe</button>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2023 MakeMyVash. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <a href="https://wa.me/917352469887" target="_blank" rel="noopener noreferrer" class="whatsapp-float">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/WhatsApp_icon.png" alt="WhatsApp" style="width:70px;height:70px;">
+    </a>
+
+    <script>
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const navLinks = document.querySelector('.nav-links');
+        mobileMenu.addEventListener('click', function() {
+            this.classList.toggle('active');
+            navLinks.classList.toggle('mobile-active');
+        });
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', function() {
+                mobileMenu.classList.remove('active');
+                navLinks.classList.remove('mobile-active');
+            });
+        });
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+        });
+        document.getElementById('contactForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const submitBtn = document.getElementById('submitBtn');
+            const formMessage = document.getElementById('formMessage');
+            const formData = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                subject: document.getElementById('subject').value,
+                message: document.getElementById('message').value
+            };
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Sending...';
+            formMessage.className = 'form-message';
+            formMessage.style.display = 'none';
+            try {
+                const mailtoLink = `mailto:info@mmvash.com?subject=${encodeURIComponent(formData.subject)}&body=${encodeURIComponent(`Name: ${formData.name}\nEmail: ${formData.email}\nPhone: ${formData.phone || 'Not provided'}\n\nMessage:\n${formData.message}`)}`;
+                window.location.href = mailtoLink;
+                formMessage.textContent = 'Your default email client has been opened. Please send the email to complete your message.';
+                formMessage.className = 'form-message success';
+                this.reset();
+            } catch (error) {
+                formMessage.textContent = 'There was an error. Please try again or contact us directly at info@mmvash.com';
+                formMessage.className = 'form-message error';
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Send Message';
+            }
+        });
+        function handleNewsletter(e) {
+            e.preventDefault();
+            const email = e.target.previousElementSibling.value;
+            if (email) {
+                const mailtoLink = `mailto:info@mmvash.com?subject=Newsletter Subscription&body=Please subscribe this email to your newsletter: ${email}`;
+                window.location.href = mailtoLink;
+                alert('Your default email client has been opened. Please send the email to subscribe.');
+                e.target.previousElementSibling.value = '';
+            }
+        }
+    </script>
+</body>
+</html>
