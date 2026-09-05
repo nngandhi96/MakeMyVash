@@ -142,6 +142,378 @@
         .service-icon { width: 65px; height: 65px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; font-size: 1.8rem; }
         .service-card h3 { font-size: 1.4rem; color: #2c3e50; margin-bottom: 12px; }
         .service-card p { color: #666666; line-height: 1.7; }
+
+        /* Projects & Products Section */
+        .projects { padding: 90px 20px; background-color: #f8f9fa; }
+        .projects-container { max-width: 1200px; margin: 0 auto; }
+        .project-filters { display: flex; justify-content: center; gap: 12px; margin-bottom: 45px; flex-wrap: wrap; }
+        .filter-btn {
+            padding: 10px 24px;
+            border: 1.5px solid #667eea;
+            background-color: #ffffff;
+            color: #667eea;
+            border-radius: 50px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+        .filter-btn:hover {
+            background-color: rgba(102, 126, 234, 0.08);
+            transform: translateY(-2px);
+        }
+        .filter-btn.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #ffffff;
+            border-color: transparent;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.35);
+        }
+        .filter-btn .pulse-dot {
+            width: 8px;
+            height: 8px;
+            background-color: #f59e0b;
+            border-radius: 50%;
+            display: inline-block;
+            box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.7);
+            animation: pulseGlow 1.6s infinite;
+        }
+        .filter-btn.active .pulse-dot {
+            background-color: #fde68a;
+            box-shadow: 0 0 0 0 rgba(253, 230, 138, 0.8);
+        }
+        .filter-btn .check-icon {
+            font-size: 0.95rem;
+            font-weight: 700;
+        }
+        @keyframes pulseGlow {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.7); }
+            70% { transform: scale(1.1); box-shadow: 0 0 0 7px rgba(245, 158, 11, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(245, 158, 11, 0); }
+        }
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 30px;
+        }
+        .project-card {
+            background-color: #ffffff;
+            border-radius: 14px;
+            overflow: hidden;
+            border: 1px solid #edf2f7;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.06);
+            transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+        .project-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 16px 36px rgba(0,0,0,0.12);
+        }
+        .project-card-top {
+            padding: 24px 24px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .project-category-tag {
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            color: #667eea;
+            background-color: rgba(102, 126, 234, 0.08);
+            padding: 5px 12px;
+            border-radius: 20px;
+        }
+        .status-badge {
+            font-size: 0.8rem;
+            font-weight: 600;
+            padding: 5px 12px;
+            border-radius: 20px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .status-badge.ongoing {
+            background-color: #fffbeb;
+            color: #b45309;
+            border: 1px solid #fde68a;
+        }
+        .status-badge.ongoing .dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background-color: #f59e0b;
+            animation: pulseGlow 1.6s infinite;
+        }
+        .status-badge.completed {
+            background-color: #ecfdf5;
+            color: #047857;
+            border: 1px solid #a7f3d0;
+        }
+        .project-body {
+            padding: 20px 24px 24px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+        .project-title {
+            font-size: 1.3rem;
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        .project-desc {
+            color: #666666;
+            font-size: 0.95rem;
+            line-height: 1.65;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+        .project-specs {
+            background-color: #f8fafc;
+            border-radius: 8px;
+            padding: 12px 14px;
+            margin-bottom: 16px;
+            border: 1px solid #f1f5f9;
+        }
+        .spec-item {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            color: #475569;
+            margin-bottom: 4px;
+        }
+        .spec-item:last-child { margin-bottom: 0; }
+        .spec-label { font-weight: 600; color: #64748b; }
+        .spec-value { font-weight: 600; color: #1e293b; }
+        .project-progress-container {
+            margin-top: 5px;
+        }
+        .progress-info {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #475569;
+            margin-bottom: 4px;
+        }
+        .progress-bar-bg {
+            background: #e2e8f0;
+            height: 6px;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+        .progress-bar-fill {
+            background: linear-gradient(90deg, #f59e0b, #667eea);
+            height: 100%;
+            border-radius: 3px;
+            transition: width 0.5s ease;
+        }
+        .progress-bar-fill.done {
+            background: linear-gradient(90deg, #10b981, #059669);
+        }
+        .project-link-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 16px;
+            padding: 10px 18px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #ffffff !important;
+            font-size: 0.88rem;
+            font-weight: 600;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.25);
+        }
+        .project-link-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px rgba(102, 126, 234, 0.4);
+            color: #ffffff !important;
+        }
+        .client-link-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 14px;
+            padding: 7px 16px;
+            background: rgba(102, 126, 234, 0.08);
+            color: #667eea !important;
+            font-size: 0.85rem;
+            font-weight: 600;
+            border-radius: 20px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        .client-link-btn:hover {
+            background: #667eea;
+            color: #ffffff !important;
+            transform: translateY(-2px);
+        }
+        .product-badge-flag {
+            font-size: 0.72rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+            background: #e0e7ff;
+            color: #4338ca;
+            padding: 3px 8px;
+            border-radius: 6px;
+            display: inline-block;
+        }
+        .project-brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .project-brand-logo {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            object-fit: contain;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+            background: #ffffff;
+            border: 1px solid #edf2f7;
+            padding: 2px;
+            display: block;
+        }
+        .project-brand-logo-wide {
+            height: 28px;
+            max-width: 100px;
+            object-fit: contain;
+            background: #ffffff;
+            border-radius: 6px;
+            padding: 2px 5px;
+            border: 1px solid #edf2f7;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+            display: block;
+        }
+        .client-logo-box {
+            width: 80px;
+            height: 80px;
+            background: #ffffff;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 16px;
+            border: 1px solid #edf2f7;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            padding: 10px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+        }
+        .client-card:hover .client-logo-box {
+            transform: scale(1.08);
+            box-shadow: 0 8px 22px rgba(102, 126, 234, 0.18);
+            border-color: #c7d2fe;
+        }
+        .client-logo-img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            border-radius: 50%;
+            display: block;
+        }
+        .client-logo-img-wide {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            display: block;
+        }
+
+        /* Clients Section */
+        .clients { padding: 90px 20px; max-width: 1200px; margin: 0 auto; }
+        .clients-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 25px;
+            margin-bottom: 45px;
+        }
+        .client-card {
+            background-color: #ffffff;
+            padding: 32px 24px;
+            border-radius: 14px;
+            box-shadow: 0 4px 18px rgba(0,0,0,0.05);
+            border: 1px solid #edf2f7;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .client-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 15px 35px rgba(102, 126, 234, 0.14);
+            border-color: #c7d2fe;
+        }
+        .client-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, rgba(102,126,234,0.1) 0%, rgba(118,75,162,0.1) 100%);
+            color: #667eea;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            margin-bottom: 16px;
+            transition: transform 0.3s ease;
+        }
+        .client-card:hover .client-icon {
+            transform: scale(1.1);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #ffffff;
+        }
+        .client-name {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 6px;
+        }
+        .client-sector {
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: #667eea;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+            margin-bottom: 8px;
+        }
+        .client-desc {
+            font-size: 0.9rem;
+            color: #64748b;
+            line-height: 1.5;
+        }
+        .clients-trust-banner {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 16px;
+            padding: 35px 25px;
+            color: #ffffff;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.25);
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 25px;
+            align-items: center;
+        }
+        .trust-feature h4 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+        .trust-feature p {
+            font-size: 0.95rem;
+            opacity: 0.92;
+        }
+
         .contact { padding: 90px 20px; background-color: #f8f9fa; }
         .contact-container { max-width: 1000px; margin: 0 auto; }
         .contact-content { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; margin-top: 50px; }
@@ -187,7 +559,9 @@
             .hero-buttons { flex-direction: column; align-items: stretch; }
             .btn-primary, .btn-secondary { width: 100%; text-align: center; }
             .footer-container { grid-template-columns: 1fr; gap: 30px; }
-            .services, .contact, .about { padding: 50px 20px; }
+            .services, .contact, .about, .projects, .clients { padding: 50px 20px; }
+            .projects-grid { grid-template-columns: 1fr; }
+            .clients-trust-banner { grid-template-columns: 1fr; gap: 20px; }
         }
         @media (max-width: 480px) {
             .hero h1 { font-size: 1.75rem; }
@@ -196,6 +570,9 @@
             .about-stats { grid-template-columns: 1fr; }
             .stat-box h3 { font-size: 2rem; }
             .service-card h3 { font-size: 1.25rem; }
+            .clients-grid { grid-template-columns: 1fr; }
+            .filter-btn { padding: 8px 16px; font-size: 0.85rem; }
+            .project-card-top { flex-direction: column; align-items: flex-start; gap: 10px; }
             .btn-primary, .btn-secondary { padding: 12px 25px; font-size: 0.95rem; }
             .contact-info h3, .contact-form h3 { font-size: 1.4rem; }
         }
@@ -210,6 +587,8 @@
                 <li><a href="#home">Home</a></li>
                 <li><a href="#about">About</a></li>
                 <li><a href="#services">Services</a></li>
+                <li><a href="#projects">Projects & Products</a></li>
+                <li><a href="#clients">Clients</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
             <div class="mobile-menu" aria-label="Toggle Menu"><span></span><span></span><span></span></div>
@@ -254,6 +633,266 @@
             <div class="service-card"><div class="service-icon">🔧</div><h3>Technical Support</h3><p>Ongoing maintenance and support for both physical infrastructure and IT systems ensuring operational continuity.</p></div>
             <div class="service-card"><div class="service-icon">🌐</div><h3>Smart Infrastructure</h3><p>Integration of IoT and smart technology into civil projects, creating intelligent buildings and infrastructure.</p></div>
             <div class="service-card"><div class="service-icon">📈</div><h3>Consulting & Advisory</h3><p>Expert consultation on complex engineering and technology challenges with strategic guidance for informed decisions.</p></div>
+        </div>
+    </section>
+
+    <section id="projects" class="projects">
+        <div class="projects-container">
+            <div class="section-title">
+                <h2>Our Projects & Products</h2>
+                <p>Explore our in-house technology products, client engineering systems, and infrastructure developments</p>
+            </div>
+
+            <div class="project-filters">
+                <button type="button" class="filter-btn active" data-filter="all">All Projects & Products</button>
+                <button type="button" class="filter-btn" data-filter="ongoing">
+                    <span class="pulse-dot"></span> Ongoing Projects
+                </button>
+                <button type="button" class="filter-btn" data-filter="completed">
+                    <span class="check-icon">✓</span> Completed Projects
+                </button>
+            </div>
+
+            <div class="projects-grid">
+                <!-- MMV Product 1: Bondoo Connect (Completed / Live) -->
+                <div class="project-card" data-status="completed">
+                    <div class="project-card-top">
+                        <div class="project-brand">
+                            <img src="https://bondoo-connect-main.vercel.app/apple-touch-icon.png" alt="Bondoo Logo" class="project-brand-logo">
+                            <span class="project-category-tag">MMV Product • Social Tech</span>
+                        </div>
+                        <span class="status-badge completed">✓ Completed</span>
+                    </div>
+                    <div class="project-body">
+                        <h3 class="project-title">Bondoo Connect <span class="product-badge-flag">In-House</span></h3>
+                        <p class="project-desc">A trust-first community networking platform connecting verified people nearby for walks, coffee, reading circles, and real-life activities with real-time discovery.</p>
+                        <div class="project-specs">
+                            <div class="spec-item"><span class="spec-label">Category:</span> <span class="spec-value">Community & Social Platform</span></div>
+                            <div class="spec-item"><span class="spec-label">Tech Stack:</span> <span class="spec-value">Cloud Web App & PWA</span></div>
+                            <div class="spec-item"><span class="spec-label">Status:</span> <span class="spec-value" style="color: #059669;">Live in Production</span></div>
+                        </div>
+                        <div class="project-progress-container">
+                            <div class="progress-info"><span>Platform Rollout</span> <span>100%</span></div>
+                            <div class="progress-bar-bg"><div class="progress-bar-fill done" style="width: 100%;"></div></div>
+                        </div>
+                        <a href="https://bondoo-connect-main.vercel.app/dashboard" target="_blank" rel="noopener noreferrer" class="project-link-btn">
+                            Launch Dashboard ↗
+                        </a>
+                    </div>
+                </div>
+
+                <!-- MMV Product 2: Nani Cab (Ongoing) -->
+                <div class="project-card" data-status="ongoing">
+                    <div class="project-card-top">
+                        <div class="project-brand">
+                            <img src="https://nani-cab.vercel.app/logo.png" alt="Nani Cab Logo" class="project-brand-logo">
+                            <span class="project-category-tag">MMV Product • Mobility</span>
+                        </div>
+                        <span class="status-badge ongoing"><span class="dot"></span> In Progress</span>
+                    </div>
+                    <div class="project-body">
+                        <h3 class="project-title">Nani Cab <span class="product-badge-flag">In-House</span></h3>
+                        <p class="project-desc">Next-generation urban mobility and ride-hailing ecosystem built for reliable city & intercity transit with live GPS vehicle tracking, transparent pricing, and driver partner portal.</p>
+                        <div class="project-specs">
+                            <div class="spec-item"><span class="spec-label">Category:</span> <span class="spec-value">Urban Mobility Platform</span></div>
+                            <div class="spec-item"><span class="spec-label">Current Phase:</span> <span class="spec-value" style="color: #d97706;">Live Beta & Dispatch Engine</span></div>
+                            <div class="spec-item"><span class="spec-label">Key Features:</span> <span class="spec-value">GPS Dispatch & Fare Engine</span></div>
+                        </div>
+                        <div class="project-progress-container">
+                            <div class="progress-info"><span>Development: Phase 2</span> <span>75%</span></div>
+                            <div class="progress-bar-bg"><div class="progress-bar-fill" style="width: 75%;"></div></div>
+                        </div>
+                        <a href="https://nani-cab.vercel.app/" target="_blank" rel="noopener noreferrer" class="project-link-btn">
+                            View Live Demo ↗
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Client Project 1: Zalexo India (Completed) -->
+                <div class="project-card" data-status="completed">
+                    <div class="project-card-top">
+                        <div class="project-brand">
+                            <img src="https://zalexo-india.vercel.app/logo-tight.png" alt="Zalexo India Logo" class="project-brand-logo-wide">
+                            <span class="project-category-tag">Client Project • E-Commerce</span>
+                        </div>
+                        <span class="status-badge completed">✓ Completed</span>
+                    </div>
+                    <div class="project-body">
+                        <h3 class="project-title">Zalexo India</h3>
+                        <p class="project-desc">Full-scale multi-vendor e-commerce marketplace empowering thousands of verified merchants across India with wholesale B2B and retail ordering pipelines, dynamic search, and pan-India logistics.</p>
+                        <div class="project-specs">
+                            <div class="spec-item"><span class="spec-label">Client / Domain:</span> <span class="spec-value">Multi-Vendor Marketplace</span></div>
+                            <div class="spec-item"><span class="spec-label">Highlights:</span> <span class="spec-value">B2B Wholesale & Retail Store</span></div>
+                            <div class="spec-item"><span class="spec-label">Status:</span> <span class="spec-value" style="color: #059669;">Successfully Delivered</span></div>
+                        </div>
+                        <div class="project-progress-container">
+                            <div class="progress-info"><span>Project Delivery</span> <span>100%</span></div>
+                            <div class="progress-bar-bg"><div class="progress-bar-fill done" style="width: 100%;"></div></div>
+                        </div>
+                        <a href="https://zalexo-india.vercel.app" target="_blank" rel="noopener noreferrer" class="project-link-btn">
+                            Visit Marketplace ↗
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Client Project 2: Bureaucrats Hive (Completed) -->
+                <div class="project-card" data-status="completed">
+                    <div class="project-card-top">
+                        <div class="project-brand">
+                            <img src="http://bureaucratshive.com/assets/images/logo.png" alt="Bureaucrats Hive Logo" class="project-brand-logo">
+                            <span class="project-category-tag">Client Project • EdTech</span>
+                        </div>
+                        <span class="status-badge completed">✓ Completed</span>
+                    </div>
+                    <div class="project-body">
+                        <h3 class="project-title">Bureaucrats Hive</h3>
+                        <p class="project-desc">Specialized online mentorship and test series platform designed for UPSC & BPSC civil service examination aspirants featuring interactive test engines, curriculum guides, and performance analytics.</p>
+                        <div class="project-specs">
+                            <div class="spec-item"><span class="spec-label">Client / Domain:</span> <span class="spec-value">Civil Services Mentorship</span></div>
+                            <div class="spec-item"><span class="spec-label">Modules:</span> <span class="spec-value">UPSC/BPSC Test Series & LMS</span></div>
+                            <div class="spec-item"><span class="spec-label">Status:</span> <span class="spec-value" style="color: #059669;">Active Production</span></div>
+                        </div>
+                        <div class="project-progress-container">
+                            <div class="progress-info"><span>Platform Launch</span> <span>100%</span></div>
+                            <div class="progress-bar-bg"><div class="progress-bar-fill done" style="width: 100%;"></div></div>
+                        </div>
+                        <a href="http://bureaucratshive.com" target="_blank" rel="noopener noreferrer" class="project-link-btn">
+                            Visit Website ↗
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Civil Project 1: Commercial Complex (Completed) -->
+                <div class="project-card" data-status="completed">
+                    <div class="project-card-top">
+                        <span class="project-category-tag">Civil Engineering</span>
+                        <span class="status-badge completed">✓ Completed</span>
+                    </div>
+                    <div class="project-body">
+                        <h3 class="project-title">Commercial Plaza & Business Center</h3>
+                        <p class="project-desc">Complete architectural design, structural engineering, and construction management of a multi-storey commercial retail complex with earthquake-resistant RCC framing.</p>
+                        <div class="project-specs">
+                            <div class="spec-item"><span class="spec-label">Area:</span> <span class="spec-value">42,000 Sq. Ft.</span></div>
+                            <div class="spec-item"><span class="spec-label">Location:</span> <span class="spec-value">Bihar Region</span></div>
+                            <div class="spec-item"><span class="spec-label">Status:</span> <span class="spec-value" style="color: #059669;">Successfully Handed Over</span></div>
+                        </div>
+                        <div class="project-progress-container">
+                            <div class="progress-info"><span>Project Delivery</span> <span>100%</span></div>
+                            <div class="progress-bar-bg"><div class="progress-bar-fill done" style="width: 100%;"></div></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Civil Project 2: Highway Infrastructure (Ongoing) -->
+                <div class="project-card" data-status="ongoing">
+                    <div class="project-card-top">
+                        <span class="project-category-tag">Civil & Infrastructure</span>
+                        <span class="status-badge ongoing"><span class="dot"></span> In Progress</span>
+                    </div>
+                    <div class="project-body">
+                        <h3 class="project-title">Highway Widening & Drainage Network</h3>
+                        <p class="project-desc">Road infrastructure development, topographic surveying, storm water drainage engineering, and heavy-load pavement laying for connecting arterial highway corridors.</p>
+                        <div class="project-specs">
+                            <div class="spec-item"><span class="spec-label">Length:</span> <span class="spec-value">12.5 KM Corridor</span></div>
+                            <div class="spec-item"><span class="spec-label">Type:</span> <span class="spec-value">Road & Highway Works</span></div>
+                            <div class="spec-item"><span class="spec-label">Current Phase:</span> <span class="spec-value" style="color: #d97706;">Pavement & Grading Stage</span></div>
+                        </div>
+                        <div class="project-progress-container">
+                            <div class="progress-info"><span>Progress: Phase 2</span> <span>65%</span></div>
+                            <div class="progress-bar-bg"><div class="progress-bar-fill" style="width: 65%;"></div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="clients" class="clients">
+        <div class="section-title">
+            <h2>Our Clients & Partners</h2>
+            <p>Proud to be the trusted technology and engineering partner for forward-thinking organizations</p>
+        </div>
+        <div class="clients-grid">
+            <!-- Client 1: Zalexo India -->
+            <div class="client-card">
+                <div class="client-logo-box">
+                    <img src="https://zalexo-india.vercel.app/logo-tight.png" alt="Zalexo India Logo" class="client-logo-img-wide">
+                </div>
+                <h3 class="client-name">Zalexo India</h3>
+                <div class="client-sector">Multi-Vendor E-Commerce</div>
+                <p class="client-desc">Pan-India retail and direct factory wholesale marketplace supporting verified multi-vendor storefronts.</p>
+                <a href="https://zalexo-india.vercel.app" target="_blank" rel="noopener noreferrer" class="client-link-btn">
+                    Visit Website ↗
+                </a>
+            </div>
+
+            <!-- Client 2: Bureaucrats Hive -->
+            <div class="client-card">
+                <div class="client-logo-box">
+                    <img src="http://bureaucratshive.com/assets/images/logo.png" alt="Bureaucrats Hive Logo" class="client-logo-img">
+                </div>
+                <h3 class="client-name">Bureaucrats Hive</h3>
+                <div class="client-sector">EdTech & Mentorship</div>
+                <p class="client-desc">Online civil services mentorship portal and comprehensive UPSC / BPSC test series examination system.</p>
+                <a href="http://bureaucratshive.com" target="_blank" rel="noopener noreferrer" class="client-link-btn">
+                    Visit Website ↗
+                </a>
+            </div>
+
+            <!-- Client 3: Apex Infra Developers -->
+            <div class="client-card">
+                <div class="client-icon">🏢</div>
+                <h3 class="client-name">Apex Infra Developers</h3>
+                <div class="client-sector">Commercial Infrastructure</div>
+                <p class="client-desc">Turnkey structural consulting and construction oversight for multi-storey retail and corporate complexes.</p>
+                <span class="client-link-btn" style="cursor: default;">Civil Client</span>
+            </div>
+
+            <!-- Client 4: Regional Public Works -->
+            <div class="client-card">
+                <div class="client-icon">🏛️</div>
+                <h3 class="client-name">Regional Public Works</h3>
+                <div class="client-sector">Government & Municipal</div>
+                <p class="client-desc">Public road alignments, geotechnical surveying, and sustainable stormwater drainage infrastructure.</p>
+                <span class="client-link-btn" style="cursor: default;">Public Sector</span>
+            </div>
+
+            <!-- Client 5: GreenView Townships -->
+            <div class="client-card">
+                <div class="client-icon">🏡</div>
+                <h3 class="client-name">GreenView Townships</h3>
+                <div class="client-sector">Residential Real Estate</div>
+                <p class="client-desc">Comprehensive layout planning, architectural blueprints, and smart gated community infrastructure.</p>
+                <span class="client-link-btn" style="cursor: default;">Real Estate</span>
+            </div>
+
+            <!-- Client 6: Prime Buildcon Pvt Ltd -->
+            <div class="client-card">
+                <div class="client-icon">🏭</div>
+                <h3 class="client-name">Prime Buildcon Pvt Ltd</h3>
+                <div class="client-sector">Industrial Structures</div>
+                <p class="client-desc">Heavy industrial shed design, foundation stabilization, and pre-engineered building (PEB) solutions.</p>
+                <span class="client-link-btn" style="cursor: default;">Industrial Client</span>
+            </div>
+        </div>
+
+        <div class="clients-trust-banner">
+            <div class="trust-feature">
+                <h4>10+</h4>
+                <p>Delivered Projects</p>
+            </div>
+            <div class="trust-feature">
+                <h4>100%</h4>
+                <p>Client Satisfaction Rate</p>
+            </div>
+            <div class="trust-feature">
+                <h4>15+</h4>
+                <p>Domain Specialists</p>
+            </div>
+            <div class="trust-feature">
+                <h4>24/7</h4>
+                <p>Support & Quality Assurance</p>
+            </div>
         </div>
     </section>
 
@@ -323,6 +962,8 @@
                 <h3>Quick Links</h3>
                 <a href="#about">About Us</a>
                 <a href="#services">Services</a>
+                <a href="#projects">Projects & Products</a>
+                <a href="#clients">Our Clients</a>
                 <a href="#contact">Contact</a>
             </div>
             <div class="footer-section">
@@ -369,6 +1010,35 @@
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
                 if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+        });
+
+        // Project Filter Handler
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const projectCards = document.querySelectorAll('.project-card');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                filterBtns.forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+
+                const filterValue = this.getAttribute('data-filter');
+                projectCards.forEach(card => {
+                    const cardStatus = card.getAttribute('data-status');
+                    if (filterValue === 'all' || cardStatus === filterValue) {
+                        card.style.display = 'flex';
+                        setTimeout(() => {
+                            card.style.opacity = '1';
+                            card.style.transform = 'translateY(0)';
+                        }, 20);
+                    } else {
+                        card.style.opacity = '0';
+                        card.style.transform = 'translateY(15px)';
+                        setTimeout(() => {
+                            card.style.display = 'none';
+                        }, 250);
+                    }
+                });
             });
         });
         document.getElementById('contactForm').addEventListener('submit', async function(e) {
